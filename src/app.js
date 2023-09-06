@@ -20,6 +20,7 @@ app.use(cors({ origin: '*' }));
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(requestIp.mw())
 app.use("/public", express.static("public"));
+app.use(express.static(__dirname));
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Credentials", true);
@@ -32,8 +33,8 @@ app.use(function(req, res, next) {
     next();
   });
 
-  app.get('/',function(req,res) {
-    res.sendFile(path.join(__dirname+'/index.html'));
+  app.get("/", (req, res) => {
+    res.send("Application Server started");
   });
 
 initAPIs(app) 
