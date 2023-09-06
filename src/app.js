@@ -6,6 +6,7 @@ const initAPIs = require('./routes/indexRouters');
 const path = require("path")
 const bodyParser = require("body-parser");
 const requestIp = require('request-ip')
+const path = require('path');
 dotenv.config({
     path: "./config.env"
 })
@@ -31,7 +32,10 @@ app.use(function(req, res, next) {
     );
     next();
   });
-  
+
+  app.get('/',function(req,res) {
+    res.sendFile(path.join(__dirname+'/index.html'));
+  });
 
 initAPIs(app) 
 
