@@ -2,7 +2,7 @@ const app = require("./src/app")
 const mongoose = require("mongoose")
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-mongoose.connect('mongodb+srv://divyaChourasiya:7FerseixchRlYwN3@pbmc.y3bez7u.mongodb.net/OrderPizza?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://divyaChourasiya:7FerseixchRlYwN3@pbmc.y3bez7u.mongodb.net/king_place?retryWrites=true&w=majority')
 .then(()=> console.log("Database connected successfully!"))
 .catch(err => console.error(err))
 // mongodb+srv://divyaChourasiya:7FerseixchRlYwN3@pbmc.y3bez7u.mongodb.net/OrderPizza?retryWrites=true&w=majority
