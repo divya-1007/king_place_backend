@@ -32,8 +32,15 @@ const createData = new Order({
 }
 }
 
+exports.OrderUpdate = async(userData)=>{
+  await Order.findOneAndUpdate(
+    { _id: userData?.productId},
+    { $set: {stage:'complete'} },
+    { new: true }
+  );
+}
+
 exports.PaymenetIntentCreate = async(userData)=>{
-  console.log(userData ,"ayaa");
     const order = await Order.findOne({productId:userData?.productId}) 
     const paymentIntent = await stripe.paymentIntentData(order);
     if(paymentIntent){

@@ -45,6 +45,7 @@ exports.getOrderProduct = async(req,res)=>{
 exports.paymentIntent = async(req,res)=>{
     try {
     const paymentIntent = await service.PaymenetIntentCreate(req.body)
+    
     statusOk(res ,200 ,{status:true,order:paymentIntent})
         
     } catch (error) {
@@ -56,7 +57,11 @@ exports.paymentIntent = async(req,res)=>{
 exports.paymentVerify = async(req,res)=>{
     try {
     const paymentIntent = await service.PaymenetIntentVerify(req.body)
+
+    const updateOrder = await service.OrderUpdate(req.body)
+    if(updateOrder){
     statusOk(res ,200 ,{status:true,order:paymentIntent})
+    }
     } catch (error) {
     console.log(error ,"jfv");
     errorHandling(res, error, "payment");  
