@@ -13,7 +13,8 @@ exports.saveProduct = async (userData, imageUrl, type) => {
         productName: userData.productName,
         productType: userData.productType,
         price: userData.price,
-        product_image: 'http://127.0.0.1:8000/public'+imageUrl,
+        product_image: 'https://king-place-backend.onrender.com/public'+imageUrl,
+        // 'https://king-place-backend.onrender.com/public'
         status: userData.status,
         productDescription:userData.productDescription
       };
