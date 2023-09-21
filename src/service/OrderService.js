@@ -61,6 +61,7 @@ if(paymentsucess){
 }
 
 exports.getAllOrderData = async(req)=>{
+  console.log(req?.query.type ,"sfcjdn");
   if(req?.query.type == 'All'){
    return await Order.find({})
   }else{

@@ -10,5 +10,6 @@ router.post("/login", userController.logIn)
 .post("/resetpassword", userController.resetPassword)
 .patch("/changepassword", loginRequired, userController.changePassword)
 .patch("/", loginRequired, userController.editUser)
+.post('/contact-us',userController.ContactUs)
 
 module.exports = router

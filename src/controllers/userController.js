@@ -1,8 +1,9 @@
 const User = require("../models/userModel");
+const ContactUs = require("../models/contactUsModel");
 const { ObjectId } = require("mongodb");
 const { generateToken } = require("../middleware/authMiddleware");
 const { errorHandling } = require("../utils/errorHandler");
-const { sendMailData } = require("../utils/email");
+const { sendMailData,sendContactUs } = require("../utils/email");
 const bcrypt = require("bcrypt");
 const axios = require('axios');
 
@@ -238,6 +239,62 @@ exports.getAllUserData =async (req,res)=>{
   
 }catch(err){
     errorHandling(res, err, 'User')
+}
+}
+
+exports.ContactUs = async(req,res)=>{
+  try {
+    const { full_Name, email, message } = req.body
+    if (full_Name == undefined || full_Name == "") {
+        return res.json({
+            staus: 422,
+            message: "please fill Name!"
+        });
+    }
+  
+    if (email == undefined || email == "") {
+        return res.json({
+            staus: 422,
+            message: "Please fill Email Address!",
+        });
+    }
+   
+    if (message == undefined || message == "") {
+        return res.json({
+            staus: 422,
+            message: "please fill Message!"
+        });
+    }
+
+    const contactInformation = new ContactUs({
+      full_Name: full_Name,
+        email: email,
+        message: message,
+    });
+   const findAllData = await contactInformation.save();
+ 
+   if(findAllData){
+    const options = {
+      email:findAllData.email,
+      full_Name: findAllData.full_Name,
+      message: findAllData.message,
+      id:findAllData._id,
+      subject:"Contact Us Details",
+    };
+    const emailresponse = await sendContactUs(options);
+        if (emailresponse.messageId) {
+          console.log("Message Sent" + emailresponse);
+          return res.status(200).json({
+            status: 200,
+            success: true,
+            message: "Contact information details saved successfully!",
+        })
+        }
+   }else{
+    errorHandling(res, err, 'User')
+   }
+  }catch(err){
+    errorHandling(res, err, 'Contact Us')
 }
 }
 

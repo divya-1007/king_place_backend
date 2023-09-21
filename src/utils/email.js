@@ -43,3 +43,98 @@ const transporter = nodemailer.createTransport({
        const sebdEmail = await transporter.sendMail(mailOptions)
        return sebdEmail
    }
+
+   exports.sendContactUs = async (options) => {
+   
+    let mailOptions = {
+        from: 'divyachourasiya.infograins@gmail.com',
+        to: options.email,
+        subject: options.subject,
+        text: 'Hello People!',
+        html: `<!DOCTYPE html>
+        <html lang="en">
+        
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
+            <title>Document</title>
+        </head>
+        
+        <body>
+        
+            <style type="text/css">
+                body {
+                    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji !important;
+                }
+        
+                element.style {
+                    display: inline-block;
+                    width: 123px;
+                }
+        
+                .hx,
+                .im {
+                    color: #222222 !important;
+                }
+            </style>
+            <div
+                style="padding:50px 0;margin:0;background-color:#ececec;font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji">
+        
+                <table align="center" border="0" cellpadding="0" cellspacing="0" width="600"
+                    style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;color: #222222;">
+                    <tbody>
+                        <tr>
+                            <td
+                                style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-size:15px">
+                                <table width="600" border="0" cellpadding="0" cellspacing="0"
+                                    style="width:600px;margin:0 auto;background-color:#fff">
+                                    <tbody> 
+                                        <tr> 
+                                            <td align="center"
+                                                style="text-align:center;background:#ffcd5f;padding:10px 0px 10px">
+                                                <a href="{{email}}"
+                                                    style="text-decoration:none;display:inline-block;font-weight: 700;color: #000;"
+                                                    target="_blank">Contact-us
+                                                </a>
+                                            </td>
+                                        </tr>
+        
+        
+                                        <tr> 
+                                            <td
+                                                style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;padding:20px 20px">
+                                                <p style="color:#000000; margin-top: 0px;"><b></b></p>
+        
+                                                <p style="color: #110f0f;">Contatct-Information</p>
+                                                <p style=" margin-top: 0px; margin-bottom: 2px;">
+                                                    <label style="display:inline-block; width:123px;"> Name                 : </label><b
+                                                        style="color: #1b1c1f;">${options.full_Name}</b> 
+                                                </p>
+                                               
+                                                <p style=" margin-top: 0px; margin-bottom: 2px;">
+                                                    <label style="display:inline-block; width:123px;"> Email                : </Section>
+                                                    </label><b style="color: #1b1c1f;">${options.email}</b>
+                                                </p>
+                                               
+                                                <p style=" margin-top: 0px; margin-bottom: 2px;">
+                                                    <label style="display:inline-block; width:123px;"> message         : </Section>
+                                                    </label><b style="color:  #1b1c1f;">${options.message}</b>
+                                                </p>
+        
+                                                <div style="height:5px;"></div>
+                                            </td> 
+                                        </tr>
+                                        <tr>
+        
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>`
+    };
+    const contactEmail = await transporter.sendMail(mailOptions)
+    return contactEmail
+}
