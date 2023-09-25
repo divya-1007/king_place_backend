@@ -3,7 +3,7 @@ const ContactUs = require("../models/contactUsModel");
 const { ObjectId } = require("mongodb");
 const { generateToken } = require("../middleware/authMiddleware");
 const { errorHandling } = require("../utils/errorHandler");
-const { sendMailData,sendContactUs } = require("../utils/email");
+const { sendMailData,sendContactUs,sendContactUsClient } = require("../utils/email");
 const bcrypt = require("bcrypt");
 const axios = require('axios');
 
@@ -275,7 +275,7 @@ exports.ContactUs = async(req,res)=>{
  
    if(findAllData){
     const options = {
-      email:findAllData.email,
+      email:'divyachourasiya.infograins@gmail.com',
       full_Name: findAllData.full_Name,
       message: findAllData.message,
       id:findAllData._id,
@@ -283,12 +283,18 @@ exports.ContactUs = async(req,res)=>{
     };
     const emailresponse = await sendContactUs(options);
         if (emailresponse.messageId) {
-          console.log("Message Sent" + emailresponse);
-          return res.status(200).json({
-            status: 200,
-            success: true,
-            message: "Contact information details saved successfully!",
-        })
+       const emailresponseClient = await    sendContactUsClient({email:findAllData.email,})
+       if (emailresponseClient.messageId) {
+        console.log("Message Sent" + emailresponse);
+        return res.status(200).json({
+          status: 200,
+          success: true,
+          message: "Contact information details saved successfully!",
+      })
+       }else{
+       errorHandling(res, err, 'User')
+       }
+         
         }
    }else{
     errorHandling(res, err, 'User')
