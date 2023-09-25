@@ -35,6 +35,10 @@ const userSchema = mongoose.Schema({
         type: Boolean, 
         default: false
     },
+    status:{
+        type: Number,
+        enum: [1,0],
+    },
     passwordResetOTP: String,
     passwordResetOTPExpire: Date
 })

@@ -133,10 +133,19 @@ exports.getOrderData = async(req,res)=>{
 
 exports.getUserOrders = (req, res)=>{
     Order.find({user: req.user._id}).then(data =>{
-        res.status(200).json({
+        return res.status(200).json({
             orders: data
         })
     }).catch(err =>{
         errorHandling(res, err, 'order')
     })
+}
+
+exports.dashboardData = async(req,res)=>{
+   try {
+    const OrderFind = await service.dashboardDataCreate(req) 
+    statusOk(res ,200 ,{status:true,dashboard: OrderFind});
+   } catch (error) {
+    errorHandling(res, err, 'order')
+   }
 }

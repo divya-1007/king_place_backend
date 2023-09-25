@@ -82,7 +82,7 @@ exports.getSingleProduct = async(req,res)=>{
 
 exports.dashboardData = async(req,res)=>{
   try {
-    const DashBoardData = await service.findTotalCount()
+    const DashBoardData = await service.findTotalCount(req)
     statusOk(res ,200 ,{status:true,DashBoardData:DashBoardData})
   } catch (error) {
     errorHandling(res, error, "product"); 

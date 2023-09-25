@@ -13,4 +13,6 @@ router.get('/getOrder',orderController.getOrderData)
 router.get('/getOrder-product',orderController.getOrderProduct);
 router.post('/payment-intent',orderController.paymentIntent);
 router.post('/payment-verify',orderController.paymentVerify);
+router.get('/dashboard-data',orderController.dashboardData);
+
 module.exports = router

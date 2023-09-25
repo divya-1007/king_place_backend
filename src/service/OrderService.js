@@ -89,3 +89,21 @@ exports.getOrderData = async(customerId)=>{
     }
     return productData
 }
+
+exports.dashboardDataCreate = async(reqst)=>{
+  if(reqst.query.type ==='all'){
+    const totalUser = await User.find().count()
+    const totalProduct = await Product.find().count()
+    const totalOrder = await Order.find().count()
+    const totalfood = await Order.find({productType:'food'}).count()
+    const Totalwedding = await Order.find({productType:'wedding'}).count()
+    const Totalroom = await Order.find({productType:'room'}).count()
+    return {TotalUser:totalUser ,TotalProduct:totalProduct,TotalOrder:totalOrder,Totalfood:totalfood,Totalwedding:Totalwedding,Totalroom:Totalroom}
+
+  }else{
+    const clientfood = await Order.find({customerId:reqst.query.type,productType:'food'}).count()
+    const clientwedding = await Order.find({customerId:reqst.query.type,productType:'wedding'}).count()
+    const clientroom = await Order.find({customerId:reqst.query.type,productType:'room'}).count()
+    return {clientfood:clientfood ,clientroom:clientroom ,clientwedding:clientwedding}
+  }
+}
