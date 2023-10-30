@@ -2,11 +2,10 @@ const app = require("./src/app")
 const mongoose = require("mongoose")
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-mongoose.connect('mongodb+srv://divyaChourasiya:7FerseixchRlYwN3@pbmc.y3bez7u.mongodb.net/king_place?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://divya:K560bPtwgqgm0kfm@projects.sjyhumk.mongodb.net/king_place?retryWrites=true&w=majority')
 .then(()=> console.log("Database connected successfully!"))
 .catch(err => console.error(err))
-// mongodb+srv://divyaChourasiya:7FerseixchRlYwN3@pbmc.y3bez7u.mongodb.net/OrderPizza?retryWrites=true&w=majority
-// mongodb://localhost:27017/OrderPizza
+// mongodb+srv://divyaChourasiya:7FerseixchRlYwN3@pbmc.y3bez7u.mongodb.net/king_place?retryWrites=true&w=majority
 app.use((req, res, next) => {
   res.status(404).json({ error: 'Not Found' });
 });
